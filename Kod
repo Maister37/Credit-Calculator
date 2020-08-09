@@ -1,0 +1,53 @@
+import math
+
+
+def calculate_months():
+    credit_principal = int(input("Enter the credit principal: "))
+    annuity_monthly_payment = int(input("Enter the monthly payment: "))
+    credit_interest = float(input("Enter the credit interest: ")) / 100
+    nominal_interest_rate = (credit_interest / (12 * 1))
+    number_of_months = math.ceil((math.log1p(nominal_interest_rate)) * (annuity_monthly_payment / (annuity_monthly_payment - nominal_interest_rate * credit_principal)))
+    if number_of_months == 1:
+        print("You need 1 month to repay this credit!")
+    elif 12 > number_of_months > 1:
+        print(f"You need {number_of_months} months to repay this credit!")
+    else:
+        years = number_of_months // 12
+        leftover_months = number_of_months % 12
+        if leftover_months != 0:
+            if years > 1:
+                if leftover_months > 1:
+                    print(f"You need {years} years and {leftover_months} months to repay this credit!")
+                else:
+                    print(f"You need {years} years and {leftover_months} month to repay this credit!")
+            else:
+                print(f"You need {years} year to repay this credit!")
+        else:
+            print(f"You need {years} years to repay this credit!")
+            
+def calculate_annuity_payment():
+    credit_principal = int(input("Enter the credit principal: "))
+    number_of_months = int(input("Enter the number of periods: "))
+    credit_interest = (float(input("Enter the credit interest: "))) / 1200
+    annuity_monthly_payment = credit_principal * ((credit_interest * ((1 + credit_interest) ** number_of_months)) / (((1 + credit_interest) ** number_of_months) - 1))
+    print(f"Your annuity payment = {math.ceil(annuity_monthly_payment)}!")
+
+def calculate_credit_principal():
+    annuity_monthly_payment = int(input("Enter the monthly payment: "))
+    number_of_months = int(input("Enter the number of periods: "))
+    credit_interest = int(input("Enter the credit interest: "))
+    credit_principal = annuity_monthly_payment / (((credit_interest * (1 + credit_interest) ** number_of_months)) / ((1 + credit_interest) ** number_of_months - 1))
+    print(f"Your credit principal = {credit_principal}!")
+
+
+choice = input("""What do you want to calculate?
+type "n" for the count of months,
+type "a" for the annuity monthly payment,
+type "p" for the credit principal: """)
+
+if choice == "n":
+    calculate_months()
+elif choice == "a":
+    calculate_annuity_payment()
+elif choice == "p":
+    calculate_credit_principal()
