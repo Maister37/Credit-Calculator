@@ -46,11 +46,11 @@ def calculate_differentiated_payment():
     print(f"Overpayment = {overall - c_p}")
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--type', type=str, help="increase output verbosity")
-parser.add_argument('--principal', type=int, help="increase output verbosity", default=0)
-parser.add_argument('--payment', type=int, help="increase output verbosity", default=0)
-parser.add_argument('--periods', type=int, help="increase output verbosity", default=0)
-parser.add_argument('--interest', type=float, help="increase output verbosity", default=0.0)
+parser.add_argument('--type', type=str)
+parser.add_argument('--principal', type=int, default=0)
+parser.add_argument('--payment', type=int, default=0)
+parser.add_argument('--periods', type=int, default=0)
+parser.add_argument('--interest', type=float, default=0.0)
 args = parser.parse_args()
 
 c_p = args.principal
